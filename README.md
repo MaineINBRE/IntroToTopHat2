@@ -22,3 +22,23 @@ There are a variety of different sequence mappers to use for RNA-seq data (such 
      a. If two adjacent sub-fragments align to non-adjacent genomic locations, these are used to infer splice junctions. 
 
 For even more information related to TopHat2 (and alignment in general), read [this](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2013-14-4-r36) and [this](https://insidedna.me/tutorials/view/tophat2-analysis-of-rna-expression-is). 
+
+***
+
+## Script
+
+The generic script that we utilize follows this format:
+
+```
+tophat --no-coverage-search -o [OUTPUT DIRECTORY] -r 200 --max-segment-intron 5000 -p 8 -G [GTF FILE] [INPUT 1] [INPUT 2]
+```
+
+Let's explain what these arguments are:
+
+  * `--no-coverage-search`: Disables the coverage based search for junctions.
+  * `--o`: Specifies the output directory
+  * `--r 200`: This is the expected (mean) inner distance between mate pairs. For, example, for paired end runs with fragments selected at 300bp, where each end is 50bp, you should set -r to be 200 (which we do). The default is 50. 
+  * `--max-segment-intron 5000`: The maximum intron length that may be found during split-segment search. The default is 500000.
+  * `-p 8`: Use this many threads to align reads. The default is 1. Always doublecheck your system's configuration when setting this argument.
+  * `-G`: GTF file. 
+
