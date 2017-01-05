@@ -1,6 +1,6 @@
 # Introduction to Alignment with TopHat 
 
-[TopHat](https://ccb.jhu.edu/software/tophat/index.shtml) is a fast splice junction mapper for RNA-Seq reads that uses [Bowtie](http://bowtie-bio.sourceforge.net/index.shtml) underneath the hood to perform memory-efficient short read alignments. Though it has been somewhat superseded by [HISAT2](http://ccb.jhu.edu/software/hisat2/index.shtml) (developed by the same group - the [Center for Computational Biology](http://ccb.jhu.edu) at Johns Hopkins University), it is still a vital component in many different sequence analysis pipelines and thus plays an important role in the bioinformatics toolkit. 
+[TopHat](https://ccb.jhu.edu/software/tophat/index.shtml) is a fast splice junction mapper for RNA-Seq reads that uses [Bowtie](http://bowtie-bio.sourceforge.net/index.shtml) underneath the hood to perform memory-efficient short read alignments. Though it has been somewhat superseded by [HISAT2](http://ccb.jhu.edu/software/hisat2/index.shtml) (developed by the same group - the [Center for Computational Biology](http://ccb.jhu.edu) at Johns Hopkins University), it is still a vital component in many different sequence analysis pipelines and thus plays an important role in any bioinformatics toolkit. 
 
 ## Why TopHat?
 
@@ -14,3 +14,11 @@ There are a variety of different sequence mappers to use for RNA-seq data (such 
   <img src="Images/tophat.jpg"/>
  </kbd>
  </p>
+
+   1. Input sequences are aligned to the transcriptome for your reference genome (assuming you provided a GTF/GFF file).
+     a. Sequences that align to the transcriptome are retained and translated to genomic coordinates.
+     b. Sequences that do not align skip ahead to step two. 
+   2. Non-aligned sequences are broken into sub-fragments of *x* bases (where *x* is at least 25), and then these sub-fragments are aligned to the reference genome.
+     a. If two adjacent sub-fragments align to non-adjacent genomic locations, these are used to infer splice junctions. 
+
+For even more information related to TopHat2 (and alignment in general), read [this](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2013-14-4-r36) and [this](https://insidedna.me/tutorials/view/tophat2-analysis-of-rna-expression-is). 
