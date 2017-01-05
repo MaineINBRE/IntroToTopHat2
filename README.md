@@ -15,11 +15,13 @@ There are a variety of different sequence mappers to use for RNA-seq data (such 
  </kbd>
  </p>
 
-   1. Input sequences are aligned to the transcriptome for your reference genome (assuming you provided a GTF/GFF file).
-     a. Sequences that align to the transcriptome are retained and translated to genomic coordinates.
-     b. Sequences that do not align skip ahead to step two. 
-   2. Non-aligned sequences are broken into sub-fragments of *x* bases (where *x* is at least 25), and then these sub-fragments are aligned to the reference genome.
-     a. If two adjacent sub-fragments align to non-adjacent genomic locations, these are used to infer splice junctions. 
+### Step One
+
+Input sequences are aligned to the transcriptome for your reference genome (assuming you provided a GTF/GFF file). Sequences that align to the transcriptome are retained and translated to genomic coordinates. Sequences that do not align skip ahead to step two. 
+
+### Step Two:
+
+Non-aligned sequences are broken into sub-fragments of *x* bases (where *x* is at least 25), and then these sub-fragments are aligned to the reference genome. If two adjacent sub-fragments align to non-adjacent genomic locations, these are used to infer splice junctions. 
 
 For even more information related to TopHat2 (and alignment in general), read [this](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2013-14-4-r36) and [this](https://insidedna.me/tutorials/view/tophat2-analysis-of-rna-expression-is). 
 
@@ -32,6 +34,8 @@ The generic script that we utilize follows this format:
 ```
 tophat --no-coverage-search -o [OUTPUT DIRECTORY] -r 200 --max-segment-intron 5000 -p 8 -G [GTF FILE] [INPUT 1] [INPUT 2]
 ```
+
+When running TopHat with the paired-end reads it is critical that the `*_1` files and the `*_2` files appear in separate comma-delimited lists ([INPUT 1] and [INPUT 2] above), and that the order of the files in the two lists is the same.
 
 Let's explain what these arguments are:
 
