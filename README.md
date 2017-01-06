@@ -14,6 +14,7 @@ There are a variety of different sequence mappers to use for RNA-seq data (such 
   <img src="Images/tophat.jpg"/>
  </kbd>
  </p>
+Image from http://genomebiology.com/2013/14/4/R36
 
 ### Step One
 
